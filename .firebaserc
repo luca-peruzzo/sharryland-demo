@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "sharryland-demo": {
+      "hosting": {
+        "sharryland-demo": [
+          "sharryland-demo"
+        ]
+      }
+    }
+  }
+}
