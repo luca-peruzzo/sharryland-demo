@@ -52,14 +52,14 @@ export class PaginatorComponent implements OnChanges {
     this.pageDirection.emit(direction);
   }
   panSelect(index: number, direction: string): void {
-    if (direction == 'panleft') {
+    if (direction == 'swipeleft') {
       if ((this.selectedIndex + 1) % this.pagePerRow == 0) {
         this.next();
       } else {
         this.select(index + 1);
       }
     }
-    if (direction == 'panright') {
+    if (direction == 'swiperight') {
       if ((this.selectedIndex + 1) % this.pagePerRow == 1) {
         this.prev();
       } else {

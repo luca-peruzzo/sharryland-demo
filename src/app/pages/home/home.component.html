@@ -43,8 +43,7 @@
         <ng-template #beerTemplate>
             <ng-container *ngIf="lastIndex>1; then paged; else notPaged"></ng-container>
             <ng-template #paged>
-                <div (panleft)="direction=$event.type" (panright)="direction=$event.type"
-                    (panend)="paginator.panSelect(paginator.selectedIndex, direction)">
+                <div class="touch" (swipeleft)="paginator.panSelect(paginator.selectedIndex, $event.type)" (swiperight)="paginator.panSelect(paginator.selectedIndex, $event.type)">
                     <div class="clearfix counter-container">
                         <div class="col-8">
                             <h2 class="beer-counter">{{totalBeersNumber}} {{"counter.label"|translate}}</h2>

@@ -12,8 +12,8 @@
             </div>
         </div>
         <div class="broken-row-mobile">
-            <div class="img-container content" (panleft)="direction=$event.type" (panright)="direction=$event.type"
-                (panend)="onPan($event)">
+            <div class="img-container content touch" (swipeleft)="onPan($event, true)"
+                (swiperight)="onPan($event, false)">
                 <div class="left-button">
                     <i *ngIf="!!beerList[currentIndex-1]" class="fa fa-angle-left" aria-hidden="true"
                         (click)="leftArrow()"></i>
@@ -34,8 +34,8 @@
     </div>
 </ng-template>
 <ng-template #desktopTemplate>
-    <div *ngIf="!!currentBeer" class="broken-row" (panleft)="direction=$event.type" (panright)="direction=$event.type"
-        (panend)="onPan($event)">
+    <div *ngIf="!!currentBeer" class="broken-row touch" (swipeleft)="onPan($event, true)"
+        (swiperight)="onPan($event, false)">
         <div *ngIf="!!beerList[currentIndex-1]" class="left-button" (click)="leftArrow()">
             <i class="fa fa-angle-left" aria-hidden="true"></i>
             {{beerList[currentIndex-1].name}}

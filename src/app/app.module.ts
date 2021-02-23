@@ -1,6 +1,6 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { BrowserModule, HammerModule } from '@angular/platform-browser';
+import { BrowserModule, HammerGestureConfig, HammerModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -51,11 +51,17 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       }
     })
   ],
-  providers: [{ provide: APP_BASE_HREF, useValue: '/' }, BeerService, {
+  providers: [{ provide: APP_BASE_HREF, useValue: '/' }, BeerService,
+  {
     provide: HTTP_INTERCEPTORS,
     useClass: HttpRequestInterceptorService,
     multi: true
-  }, LoadingService],
+  },
+  {
+    provide: HAMMER_GESTURE_CONFIG,
+    useClass: HammerGestureConfig
+  },
+    LoadingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

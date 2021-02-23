@@ -26,6 +26,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   totalBeersPerPage = 10;
   pageDirection = '';
+  startX: any;
+  startY: any;
   constructor(private beerService: BeerService, private router: Router) {
     this.onResize();
   }

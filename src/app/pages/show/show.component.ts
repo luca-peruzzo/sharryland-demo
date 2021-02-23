@@ -54,12 +54,12 @@ export class ShowComponent implements OnInit {
     this.currentBeer.isFavourite = !this.currentBeer.isFavourite;
     this.beerService.setFavourites(this.currentBeer);
   }
-  onPan(ev: any) {
+  onPan(ev: any, left?: boolean) {
     ev.preventDefault();
     console.log(this.direction);
-    if (this.direction == 'panleft' && !!this.beerList[this.currentIndex + 1]) {
+    if (left && !!this.beerList[this.currentIndex + 1]) {
       this.rightArrow();
-    } else if (this.direction == 'panright' && !!this.beerList[this.currentIndex - 1]) {
+    } else if (!left && !!this.beerList[this.currentIndex - 1]) {
       this.leftArrow();
     }
   }
