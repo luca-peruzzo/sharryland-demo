@@ -1,0 +1,10 @@
+<div class="beer-container" [ngClass]="{'left': direction=='left', 'right': direction=='right'}">
+    <div *ngIf="!!beer" class="col-11" (click)="isClicked.emit()">
+        <p class="beer-p col-10">{{beer.name}}</p>
+        <p class="beer-p col-2" style="color: #fff; text-align: right;">{{beer.abv}}%</p>
+    </div>
+    <div class="col-1" style="text-align: right;"><i class="fa"
+            [ngClass]="{'fa-star': beer.isFavourite, 'fa-star-o': !beer.isFavourite}"
+            (click)="changeFavouritesStatus()"></i>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+{
+    "button": {
+        "allBeers": "Tutte le birre",
+        "random": "Una birra random",
+        "favourites": "Preferiti"
+    },
+    "counter": {
+        "label": "birre"
+    },
+    "filter": {
+        "label": "Gradazione alcolica (da - a)",
+        "placeholderName":"Filtra per nome o abbinamento",
+        "placeholderGt":"Da",
+        "placeholderLt":"A"
+    },
+    "error": "Inserire solo caratteri numerici",
+    "emptyResult": {
+        "home": "Nessun risultato ottenuto",
+        "favourites": "Nessun preferito trovato"
+    },
+    "description":"Descrizione",
+    "foodPairings":"Abbinamenti"
+}

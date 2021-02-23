@@ -1,0 +1,39 @@
+.beer-container {
+    height: 80px;
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 25px;
+    cursor: pointer;
+}
+
+.beer-container:hover {
+    background-color: #f0648a;
+}
+.beer-p {
+    color: #7e7d78;
+    font-size: 22px;
+}
+.beer-p.col-10 {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.beer-container:hover .beer-p {
+    color: #fff;
+}
+i.fa {
+    color: #f0648a;
+    font-size: 22px;
+}
+
+.beer-container:hover i.fa {
+    color: #fff;
+}
+
+@media only screen and (max-width: 768px) {
+    .beer-p.col-2 {
+        display: none;
+    }
+}

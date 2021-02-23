@@ -1,0 +1,200 @@
+/* You can add global styles to this file, and also import other style files */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.clearer {
+    clear: both;
+}
+
+img {
+    border: none;
+    max-width: 100%;
+    height: auto;
+}
+
+body {
+    background-color: #fff;
+    font-family: "Helvetica", sans-serif;
+}
+
+header,
+nav,
+article,
+aside,
+section,
+footer,
+main,
+figure,
+figcaption {
+    display: block;
+}
+
+.clearfix::before,
+.clearfix::after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    overflow: hidden;
+}
+
+.clearfix::after {
+    clear: both;
+}
+
+.content {
+    margin: 0 auto;
+    width: 1160px;
+}
+
+.col-1 {
+    float: left;
+    width: 8.33333%;
+}
+
+.col-2 {
+    float: left;
+    width: 16.66666%;
+}
+
+.col-3 {
+    float: left;
+    width: 25%;
+}
+
+.col-4 {
+    float: left;
+    width: 33.33333%;
+}
+
+.col-5 {
+    float: left;
+    width: 41.66666%;
+}
+
+.col-6 {
+    float: left;
+    width: 50%;
+}
+
+.col-7 {
+    float: left;
+    width: 58.33333%;
+}
+.col-8 {
+    float: left;
+    width: 66.66666%;
+}
+.col-9 {
+    float: left;
+    width: 75%;
+}
+.col-10 {
+    float: left;
+    width: 83.33333%;
+}
+.col-11 {
+    float: left;
+    width: 91.66666%;
+}
+
+.divider {
+    padding: 20px 0;
+}
+
+.spacer {
+    padding: 70px 0;
+}
+
+.responsive,
+.responsive img {
+    height: auto;
+    width: 100%;
+}
+
+.center {
+    text-align: center;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a {
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+}
+
+/* Slide animations */
+.left {
+    animation: 0.3s ease-out 0s 1 slideInFromLeft;
+}
+.right {
+    animation: 0.3s ease-out 0s 1 slideInFromRight;
+}
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Global style */
+
+/** Desktop, iPad Pro **/
+
+@media only screen and (min-width: 1024px) and (max-width: 1200px) {
+    .content {
+        margin: 0 2%;
+        width: 96%;
+    }
+}
+
+/** Display 12", iPad Pro Portrait, iPad landscape **/
+
+@media only screen and (max-width: 1024px) {
+    .content {
+        margin: 0 2%;
+        width: 96%;
+    }
+}
+
+/** iPad Portrait, smartphone **/
+/*
+@media only screen and (max-width: 768px) {
+    .col-1,
+    .col-2,
+    .col-3,
+    .col-4,
+    .col-5,
+    .col-6,
+    .col-7,
+    .col-8,
+    .col-9,
+    .col-10,
+    .col-11 {
+        float: none;
+        width: 100%;
+    }
+}
+*/
+/** piccoli smartphone **/
+
+@media only screen and (max-width: 320px) {
+}

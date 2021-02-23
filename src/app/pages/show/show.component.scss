@@ -1,0 +1,247 @@
+.broken-row {
+    background-image: linear-gradient(180deg, #000 50%, #fff 50%);
+    max-height: 90vh;
+    position: relative;
+}
+
+.img-container {
+    background-image: url("../../../assets/img/cerchio.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+}
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-height: 35vh;
+}
+
+.black {
+    height: 45vh;
+    display: flex;
+    align-items: center;
+    padding-right: 50px;
+    > div {
+        > i {
+            color: #f0648a;
+            margin: 0 14px 0 -42px;
+            font-size: 30px;
+        }
+        > h1 {
+            color: #f0648a;
+            display: inline-block;
+            font-size: 42px;
+            text-transform: uppercase;
+        }
+        > p {
+            font-size: 42px;
+            color: #4a4a4a;
+        }
+    }
+}
+h2 {
+    font-size: 30px;
+    color: #7e7d78;
+    margin-bottom: 20px;
+}
+p {
+    font-size: 24px;
+    color: #7e7d78;
+}
+.white {
+    height: 45vh;
+    display: flex;
+    align-items: center;
+    padding-right: 50px;
+    > .content p {
+        padding-bottom: 20px;
+    }
+}
+
+.pink {
+    background-color: #f0648a;
+    > .data {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 60px;
+        > p {
+            color: #fff;
+            font-size: 22px;
+        }
+    }
+}
+.grey {
+    background-color: #f3f3f3;
+    padding: 50px 0;
+    > div .scroll {
+        overflow-x: scroll;
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        > .card-container {
+            width: 1160px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            > .card {
+                margin-bottom: 10px;
+                height: 250px;
+                width: 250px;
+                background-color: #fff;
+                box-shadow: rgb(240, 100, 138) 10px 10px 0px 0px;
+                display: flex;
+                align-items: center;
+                > p {
+                    font-size: 20px;
+                    color: #7e7d78;
+                    padding: 0 30px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+.broken-row-mobile {
+    background-image: linear-gradient(180deg, #000 50%, #fff 50%);
+    > .img-container {
+        background-size: 50%;
+    }
+}
+.right-button,
+.left-button {
+    padding: 10px 0 10px 10px;
+    position: absolute;
+    top: 25%;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-height: 50px;
+    min-width: 65px;
+    max-width: 160px;
+    color: transparent;
+    background-color: transparent;
+    > i.fa {
+        margin: 0 20px;
+        color: #fff;
+        font-size: 40px;
+    }
+    &:hover {
+        color: #000;
+        background-color: #f0648a;
+        > i.fa {
+            color: #000;
+        }
+    }
+}
+.left-button {
+    padding: 10px 10px 10px 0;
+    left: 0;
+    justify-content: flex-start;
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1300px) {
+    .black div {
+        > i {
+            color: #f0648a;
+            margin: 0 15px 0 0;
+            font-size: 30px;
+            display: inline-block;
+        }
+    }
+}
+@media only screen and (max-width: 768px) {
+    .img-container {
+        height: 50vh;
+    }
+    .black {
+        background-color: #000;
+        height: auto;
+        padding-right: 0px;
+        > .content {
+            text-align: center;
+        }
+        > div {
+            > i {
+                color: #f0648a;
+                margin: 0;
+                font-size: 30px;
+                display: inline-block;
+            }
+            > h1 {
+                margin: 0 10px;
+                color: #f0648a;
+                display: inline-block;
+                font-size: 36px;
+                text-transform: uppercase;
+            }
+            > p {
+                font-size: 36px;
+                color: #4a4a4a;
+            }
+        }
+    }
+    .white {
+        height: auto;
+        display: flex;
+        align-items: center;
+        padding-right: 0px;
+        > .content p {
+            font-size: 16px;
+        }
+    }
+    h2 {
+        text-align: center;
+    }
+    .pink .data {
+        display: block;
+        height: auto;
+        text-align: center;
+        > p {
+            color: #fff;
+            font-size: 16px;
+            padding: 10px 0;
+        }
+    }
+    .grey div .scroll .card-container {
+        > .card {
+            height: 200px;
+            width: 200px;
+            background-color: #fff;
+            box-shadow: rgb(240, 100, 138) 10px 10px 0px 0px;
+            display: flex;
+            align-items: center;
+            > p {
+                font-size: 20px;
+                color: #7e7d78;
+                padding: 0 30px;
+                text-align: center;
+            }
+        }
+    }
+    .right-button,
+    .left-button {
+        position: unset;
+        float: right;
+        > i.fa {
+            color: #f0648a;
+        }
+        &:hover {
+            color: transparent;
+            background-color: transparent;
+            > i.fa {
+                color: #f0648a;
+            }
+        }
+    }
+    .left-button{
+        float: left;
+    }
+}

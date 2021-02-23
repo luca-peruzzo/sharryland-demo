@@ -1,0 +1,23 @@
+{
+    "button": {
+        "allBeers": "All beers",
+        "random": "A random beer",
+        "favourites": "Favourites"
+    },
+    "counter": {
+        "label": "beers"
+    },
+    "filter": {
+        "label": "Alcohol content (from - to)",
+        "placeholderName":"Filter by name or food pairing",
+        "placeholderGt":"From",
+        "placeholderLt":"To"
+    },
+    "error": "Insert only number characters",
+    "emptyResult": {
+        "home": "No result found",
+        "favourites": "No favourites found"
+    },
+    "description": "Description",
+    "foodPairings": "Food pairings"
+}

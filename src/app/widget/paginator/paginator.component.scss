@@ -1,0 +1,17 @@
+button {
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    font-size: 22px;
+    background-color: transparent;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    color: #7e7d78;
+    &.current {
+        color: #f0648a;
+    }
+    &:hover {
+        background-color: rgba(99, 157, 53, 0.6);
+    }
+}

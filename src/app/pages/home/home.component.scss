@@ -1,0 +1,111 @@
+.advanced-search {
+    background-color: #000;
+    padding-bottom: 30px;
+}
+input {
+    background-color: #000;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #4a4a4a;
+    color: #4a4a4a;
+    width: 100%;
+    height: 50px;
+    font-size: 24px;
+}
+.form-group.col-6 {
+    padding-right: 20px;
+    margin: 16px 0;
+}
+.form-group.col-3 {
+    padding-left: 20px;
+}
+.label {
+    float: right;
+}
+p.filter-label {
+    color: #4a4a4a;
+    padding-left: 20px;
+    font-size: 14px;
+    &.active {
+        color: #fff;
+    }
+}
+input.active,
+input:hover {
+    border-bottom: 1px solid #fff;
+    color: #fff;
+    &::placeholder {
+        color: #fff;
+    }
+}
+
+.beer-widget-container {
+    background-color: #f3f3f3;
+    padding: 20px 0;
+    min-height: calc(100vh - 232px);
+}
+.beer-spacer {
+    margin-bottom: 20px;
+}
+.error {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #ff0000;
+}
+.paginator {
+    text-align: right;
+}
+.counter-container {
+    display: flex;
+    align-items: center;
+    > .col-8 h2 {
+        color: #7e7d78;
+    }
+}
+@media only screen and (max-width: 768px) {
+    input {
+        font-size: 22px;
+    }
+    .form-group.col-3 {
+        width: 50%;
+        display: inline-block;
+        padding: 0;
+        float: none;
+    }
+    .mobile-useless {
+        display: none;
+    }
+    .col-6,
+    .form-group.col-6 {
+        padding: 0;
+        width: 100%;
+        float: none;
+    }
+    p.filter-label {
+        padding: 0;
+        float: none;
+    }
+    .counter-container {
+        display: block;
+        > .col-8 {
+            width: 100%;
+            float: none;
+            margin-bottom: 20px;
+            > h2 {
+                text-align: center;
+            }
+        }
+    }
+    .col-4.paginator,
+    .paginator {
+        width: 100%;
+        text-align: center;
+        float: none;
+        margin-bottom: 20px;
+    }
+    .beer-widget-container {
+        background-color: #f3f3f3;
+        padding: 20px 0;
+        min-height: calc(100vh - 337px);
+    }
+}
