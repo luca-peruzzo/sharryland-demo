@@ -1,56 +1,34 @@
-import { Location } from '@angular/common';
-import { AfterContentChecked, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { delay } from 'rxjs/operators';
-import { Beer } from 'src/assets/om/beer';
+import { filter, map, Observable } from 'rxjs';
 import { BeerService } from './services/beer.service';
 import { LoadingService } from './services/loading.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent implements OnInit, AfterContentChecked {
+export class AppComponent {
   title = 'sharryland-demo';
   loading = false;
-  location!: string;
+  location$: Observable<string>;
   constructor(
-    private loadingService: LoadingService,
+    public loadingService: LoadingService,
     private router: Router,
-    private cd: ChangeDetectorRef,
     private beerService: BeerService,
-    translate: TranslateService
+    private translate: TranslateService
   ) {
-    translate.setDefaultLang('en');
-    translate.use('en');
+    this.translate.setDefaultLang('en');
+    this.translate.use('en');
+    this.location$ = this.router.events.pipe(
+      filter(e => e instanceof NavigationStart),
+      map(e => (e as NavigationStart).url)
+    )
   }
 
-  ngOnInit(): void {
-    this.listenToLoading();
-    this.router.events.subscribe(ev => {
-      if (!!(ev as NavigationStart).url) {
-        this.location = (ev as NavigationStart).url;
-      }
-    });
-  }
-  ngAfterContentChecked(): void {
-    this.cd.detectChanges();
-
-  }
-
-  listenToLoading(): void {
-    this.loadingService.loadingSub
-      .pipe(delay(0))
-      .subscribe((loading) => {
-        this.loading = loading;
-      });
-  }
-
-  goToHome(): void {
-    this.router.navigate(['/home']);
-  }
   goToShow(): void {
     this.beerService.getRandomBeer().subscribe(
       response => {
@@ -60,8 +38,5 @@ export class AppComponent implements OnInit, AfterContentChecked {
         }
       }
     );
-  }
-  goToFavourites(): void {
-    this.router.navigate(['/favourites']);
   }
 }

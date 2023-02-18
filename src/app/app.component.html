@@ -1,6 +1,8 @@
 <!-- Loading spinner -->
-<div *ngIf="loading" class="loading-container flex-content-center">
-  <mat-progress-spinner color="primary" mode="indeterminate">
+<div *ngIf="loadingService.loadingSub.asObservable() | async"
+     class="loading-container flex-content-center">
+  <mat-progress-spinner color="primary"
+                        mode="indeterminate">
   </mat-progress-spinner>
 </div>
 <!-- application -->
@@ -9,23 +11,27 @@
   <header>
     <div class="pseudo-header">
       <div class="content clearfix">
-        <a *ngIf="location=='/home'" href="/home">
-          <img src="../assets/img/logo-sharryland.png" alt="logo" height="35" width="250">
-        </a>
-        <div class="button-container left" *ngIf="location!='/home'">
-          <button class="mobile-no-margin" (click)="goToHome()">{{'button.allBeers' | translate}}</button>
-        </div>
-        <div class="button-container">
-          <button (click)="goToShow()">{{'button.random' | translate}}</button>
-          <button class="ml-30" (click)="goToFavourites()">{{'button.favourites' | translate}}</button>
-        </div>
+        <ng-container *ngIf="location$ | async as location">
+          <a *ngIf="location==='/home'"
+             [routerLink]="['/home']">
+            <img src="../assets/img/logo-sharryland.png"
+                 alt="logo"
+                 height="35"
+                 width="250">
+          </a>
+          <div class="button-container left"
+               *ngIf="location!=='/home'">
+            <button class="mobile-no-margin"
+                    [routerLink]="['/home']">{{'button.allBeers' | translate}}</button>
+          </div>
+          <div class="button-container">
+            <button (click)="goToShow()">{{'button.random' | translate}}</button>
+            <button class="ml-30"
+                    [routerLink]="['/favourites']">{{'button.favourites' | translate}}</button>
+          </div>
+        </ng-container>
       </div>
     </div>
   </header>
-
   <router-outlet></router-outlet>
-
-  <!-- <footer>
-    <div class="footer"></div>
-  </footer> -->
 </div>
