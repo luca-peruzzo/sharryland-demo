@@ -2,7 +2,7 @@ import 'hammer-timejs';
 import 'hammerjs';
 
 import { APP_BASE_HREF } from '@angular/common';
-import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -26,42 +26,35 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
 }
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    ShowComponent,
-    FavouritesComponent,
-    BeerWidgetComponent,
-    PaginatorComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    MatProgressSpinnerModule,
-    BrowserAnimationsModule,
-    HammerModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    })
-  ],
-  providers: [{ provide: APP_BASE_HREF, useValue: '/' }, BeerService,
-  {
-    provide: HTTP_INTERCEPTORS,
-    useClass: HttpRequestInterceptorService,
-    multi: true
-  },
-  {
-    provide: HAMMER_GESTURE_CONFIG,
-    useClass: HammerGestureConfig
-  },
-    LoadingService],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        HomeComponent,
+        ShowComponent,
+        FavouritesComponent,
+        BeerWidgetComponent,
+        PaginatorComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        MatProgressSpinnerModule,
+        BrowserAnimationsModule,
+        HammerModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        })], providers: [{ provide: APP_BASE_HREF, useValue: '/' }, BeerService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: HttpRequestInterceptorService,
+            multi: true
+        },
+        {
+            provide: HAMMER_GESTURE_CONFIG,
+            useClass: HammerGestureConfig
+        },
+        LoadingService, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }
