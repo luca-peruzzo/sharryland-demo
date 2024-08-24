@@ -112,7 +112,9 @@
         },
         "deploy": {
           "builder": "@angular/fire:deploy",
-          "options": {}
+          "options": {
+            "buildTarget": "sharryland-demo:build:production"
+          }
         }
       }
     }
