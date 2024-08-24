@@ -8,8 +8,8 @@ describe('BeerWidgetComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BeerWidgetComponent ]
-    })
+    imports: [BeerWidgetComponent]
+})
     .compileComponents();
   });
 

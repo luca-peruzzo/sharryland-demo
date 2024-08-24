@@ -1,15 +1,19 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
-import { NavigationStart, Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
+import { NavigationStart, Router, RouterLink, RouterOutlet } from '@angular/router';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { filter, map, Observable } from 'rxjs';
 import { BeerService } from './services/beer.service';
 import { LoadingService } from './services/loading.service';
+import { NgIf, AsyncPipe } from '@angular/common';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [NgIf, MatProgressSpinner, RouterLink, RouterOutlet, AsyncPipe, TranslateModule]
 })
 export class AppComponent {
   title = 'sharryland-demo';

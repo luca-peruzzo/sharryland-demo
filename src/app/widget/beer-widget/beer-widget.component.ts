@@ -1,11 +1,14 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BeerService } from 'src/app/services/beer.service';
 import { Beer } from 'src/assets/om/beer';
+import { NgClass, NgIf } from '@angular/common';
 
 @Component({
-  selector: 'beer-widget',
-  templateUrl: './beer-widget.component.html',
-  styleUrls: ['./beer-widget.component.scss']
+    selector: 'beer-widget',
+    templateUrl: './beer-widget.component.html',
+    styleUrls: ['./beer-widget.component.scss'],
+    standalone: true,
+    imports: [NgClass, NgIf]
 })
 export class BeerWidgetComponent implements OnInit {
 
