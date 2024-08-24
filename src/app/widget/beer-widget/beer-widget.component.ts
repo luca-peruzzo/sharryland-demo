@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { BeerService } from 'src/app/services/beer.service';
 import { Beer } from 'src/assets/om/beer';
 import { NgClass } from '@angular/common';
@@ -11,6 +11,8 @@ import { NgClass } from '@angular/common';
     imports: [NgClass]
 })
 export class BeerWidgetComponent implements OnInit {
+  private beerService = inject(BeerService);
+
 
   @Input()
   beer!: Beer;
@@ -18,7 +20,10 @@ export class BeerWidgetComponent implements OnInit {
   @Input() direction = '';
   @Output() isClicked: EventEmitter<void> = new EventEmitter<void>();
   @Output() favouriteStatusChange: EventEmitter<number> = new EventEmitter<number>();
-  constructor(private beerService: BeerService) { }
+
+  /** Inserted by Angular inject() migration for backwards compatibility */
+  constructor(...args: unknown[]);
+  constructor() { }
 
   ngOnInit(): void {
   }

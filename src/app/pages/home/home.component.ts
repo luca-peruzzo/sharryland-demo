@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, HostListener, OnInit, ViewChild, inject } from '@angular/core';
 import { NgForm, FormsModule } from '@angular/forms';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { BeerService } from 'src/app/services/beer.service';
@@ -16,6 +16,9 @@ import { TranslateModule } from '@ngx-translate/core';
     imports: [FormsModule, NgClass, PaginatorComponent, BeerWidgetComponent, TranslateModule]
 })
 export class HomeComponent implements OnInit, AfterViewInit {
+  private beerService = inject(BeerService);
+  private router = inject(Router);
+
   totalBeersNumber = 0;
   lastIndex = 0;
   beerMap: Map<number, Beer[]> = new Map<number, Beer[]>([[1, []]]);
@@ -34,7 +37,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
   pageDirection = '';
   startX: any;
   startY: any;
-  constructor(private beerService: BeerService, private router: Router) {
+
+  /** Inserted by Angular inject() migration for backwards compatibility */
+  constructor(...args: unknown[]);
+  constructor() {
     this.onResize();
   }
 

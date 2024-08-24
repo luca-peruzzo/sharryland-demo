@@ -1,5 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { forkJoin, Observable, of, Subject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Beer } from 'src/assets/om/beer';
@@ -8,11 +8,16 @@ import { Beer } from 'src/assets/om/beer';
   providedIn: 'root'
 })
 export class BeerService {
+  private http = inject(HttpClient);
+
   url = 'https://api.punkapi.com/v2/beers';
   private payload!: { currentId: number, beerList: Beer[] };
   payloadListener: Subject<void> = new Subject<void>();
   private favourites: Beer[] = [];
-  constructor(private http: HttpClient) { }
+
+  /** Inserted by Angular inject() migration for backwards compatibility */
+  constructor(...args: unknown[]);
+  constructor() { }
 
   getAllBeers(page: number, perPage:number): Observable<Beer[]> {
     const params = new HttpParams().set('page', page.toString()).set('per_page', perPage.toString());

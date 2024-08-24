@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from '@angular/core';
 import { NavigationStart, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { filter, map, Observable } from 'rxjs';
@@ -16,15 +16,18 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
     imports: [MatProgressSpinner, RouterLink, RouterOutlet, AsyncPipe, TranslateModule]
 })
 export class AppComponent {
+  loadingService = inject(LoadingService);
+  private router = inject(Router);
+  private beerService = inject(BeerService);
+  private translate = inject(TranslateService);
+
   title = 'sharryland-demo';
   loading = false;
   location$: Observable<string>;
-  constructor(
-    public loadingService: LoadingService,
-    private router: Router,
-    private beerService: BeerService,
-    private translate: TranslateService
-  ) {
+
+  /** Inserted by Angular inject() migration for backwards compatibility */
+  constructor(...args: unknown[]);
+  constructor() {
     this.translate.setDefaultLang('en');
     this.translate.use('en');
     this.location$ = this.router.events.pipe(

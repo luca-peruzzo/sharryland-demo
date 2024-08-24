@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BeerService } from 'src/app/services/beer.service';
 import { Beer } from 'src/assets/om/beer';
@@ -12,6 +12,9 @@ import { TranslateModule } from '@ngx-translate/core';
     imports: [NgClass, NgStyle, TranslateModule]
 })
 export class ShowComponent implements OnInit {
+  private router = inject(Router);
+  private beerService = inject(BeerService);
+
   isMobile = false;
   currentIndex: number = 0;
   beerList: Beer[] = [];
@@ -20,7 +23,10 @@ export class ShowComponent implements OnInit {
   url = 'url("../../../assets/img/cerchio.png") no-repeat right';
   direction = '';
 
-  constructor(private router: Router, private beerService: BeerService) {
+  /** Inserted by Angular inject() migration for backwards compatibility */
+  constructor(...args: unknown[]);
+
+  constructor() {
     this.onResize();
   }
 

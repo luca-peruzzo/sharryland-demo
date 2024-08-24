@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { BeerService } from 'src/app/services/beer.service';
 import { Beer } from 'src/assets/om/beer';
@@ -14,6 +14,9 @@ import { TranslateModule } from '@ngx-translate/core';
     imports: [PaginatorComponent, BeerWidgetComponent, TranslateModule]
 })
 export class FavouritesComponent implements OnInit {
+  private beerService = inject(BeerService);
+  private router = inject(Router);
+
   totalBeersNumber = 0;
   lastIndex = 0;
   beerMap: Map<number, Beer[]> = new Map<number, Beer[]>([[1, []]]);
@@ -22,7 +25,10 @@ export class FavouritesComponent implements OnInit {
   isMobile = false;
   totalBeersPerPage = 10;
   pageDirection = '';
-  constructor(private beerService: BeerService, private router: Router) {
+
+  /** Inserted by Angular inject() migration for backwards compatibility */
+  constructor(...args: unknown[]);
+  constructor() {
     this.onResize();
   }
 
