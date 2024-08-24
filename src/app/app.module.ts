@@ -10,7 +10,7 @@ import { BrowserModule, HammerGestureConfig, HammerModule, HAMMER_GESTURE_CONFIG
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './app.routes';
 import { AppComponent } from './app.component';
 import { FavouritesComponent } from './pages/favourites/favourites.component';
 import { HomeComponent } from './pages/home/home.component';
