@@ -2,7 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BeerService } from 'src/app/services/beer.service';
 import { Beer } from 'src/assets/om/beer';
-import { NgIf, NgFor } from '@angular/common';
+
 import { PaginatorComponent } from '../../widget/paginator/paginator.component';
 import { BeerWidgetComponent } from '../../widget/beer-widget/beer-widget.component';
 import { TranslateModule } from '@ngx-translate/core';
@@ -11,7 +11,7 @@ import { TranslateModule } from '@ngx-translate/core';
     templateUrl: './favourites.component.html',
     styleUrls: ['./favourites.component.scss'],
     standalone: true,
-    imports: [NgIf, PaginatorComponent, NgFor, BeerWidgetComponent, TranslateModule]
+    imports: [PaginatorComponent, BeerWidgetComponent, TranslateModule]
 })
 export class FavouritesComponent implements OnInit {
   totalBeersNumber = 0;

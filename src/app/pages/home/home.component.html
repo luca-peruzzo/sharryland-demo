@@ -1,92 +1,91 @@
 <div class="advanced-search">
-    <div class="content">
-        <form (ngSubmit)="onSubmit()" (keyup.enter)="trySubmit()" #advancedSearch="ngForm">
-            <div class="clearfix">
-                <div class="form-group col-6">
-                    <input [ngClass]="{'active':(model.nameOrFood || '')!=''}" #nameOrFood="ngModel" type="text"
-                        class="form-control" id="nameOrFood" [(ngModel)]="model.nameOrFood" name="nameOrFood"
-                        [placeholder]="'filter.placeholderName'|translate">
-                </div>
-                <div>
-                    <div class="col-6 mobile-useless"></div>
-                    <div class="col-6">
-                        <p class="filter-label"
-                            [ngClass]="{'active':((model.abvGt || '')!='' || (model.abvLt || '')!='')}">
-                            {{"filter.label"|translate}}</p>
-                    </div>
-                </div>
-                <div class="form-group col-3">
-                    <input [ngClass]="{'active':(model.abvGt || '')!=''}" #abvGt="ngModel" type="text"
-                        class="form-control" id="abv_gt" [(ngModel)]="model.abvGt" name="abv_gt" [pattern]="onlyNumbers"
-                        [placeholder]="'filter.placeholderGt'|translate">
-                    <div [hidden]="abvGt.valid || abvGt.pristine" class="error">
-                        {{"error"|translate}}
-                    </div>
-                </div>
+  <div class="content">
+    <form (ngSubmit)="onSubmit()" (keyup.enter)="trySubmit()" #advancedSearch="ngForm">
+      <div class="clearfix">
+        <div class="form-group col-6">
+          <input [ngClass]="{'active':(model.nameOrFood || '')!=''}" #nameOrFood="ngModel" type="text"
+            class="form-control" id="nameOrFood" [(ngModel)]="model.nameOrFood" name="nameOrFood"
+            [placeholder]="'filter.placeholderName'|translate">
+        </div>
+        <div>
+          <div class="col-6 mobile-useless"></div>
+          <div class="col-6">
+            <p class="filter-label"
+              [ngClass]="{'active':((model.abvGt || '')!='' || (model.abvLt || '')!='')}">
+            {{"filter.label"|translate}}</p>
+          </div>
+        </div>
+        <div class="form-group col-3">
+          <input [ngClass]="{'active':(model.abvGt || '')!=''}" #abvGt="ngModel" type="text"
+            class="form-control" id="abv_gt" [(ngModel)]="model.abvGt" name="abv_gt" [pattern]="onlyNumbers"
+            [placeholder]="'filter.placeholderGt'|translate">
+          <div [hidden]="abvGt.valid || abvGt.pristine" class="error">
+            {{"error"|translate}}
+          </div>
+        </div>
 
-                <div class="form-group col-3">
-                    <input [ngClass]="{'active':(model.abvLt || '')!=''}" #abvLt="ngModel" type="text"
-                        class="form-control" id="abv_lt" [(ngModel)]="model.abvLt" name="abv_lt" [pattern]="onlyNumbers"
-                        [placeholder]="'filter.placeholderLt'|translate">
-                    <div [hidden]="abvLt.valid || abvLt.pristine" class="error">
-                        {{"error"|translate}}
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
+        <div class="form-group col-3">
+          <input [ngClass]="{'active':(model.abvLt || '')!=''}" #abvLt="ngModel" type="text"
+            class="form-control" id="abv_lt" [(ngModel)]="model.abvLt" name="abv_lt" [pattern]="onlyNumbers"
+            [placeholder]="'filter.placeholderLt'|translate">
+          <div [hidden]="abvLt.valid || abvLt.pristine" class="error">
+            {{"error"|translate}}
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
 <div class="beer-widget-container">
-    <div class="content">
-        <ng-container *ngIf="totalBeersNumber>0; then beerTemplate; else emptyTemplate">
-        </ng-container>
-        <ng-template #beerTemplate>
-            <ng-container *ngIf="lastIndex>1; then paged; else notPaged"></ng-container>
-            <ng-template #paged>
-                <div class="touch" (swipeleft)="paginator.panSelect(paginator.selectedIndex, $event.type)" (swiperight)="paginator.panSelect(paginator.selectedIndex, $event.type)">
-                    <div class="clearfix counter-container">
-                        <div class="col-8">
-                            <h2 class="beer-counter">{{totalBeersNumber}} {{"counter.label"|translate}}</h2>
-                        </div>
-                        <div class="col-4 paginator">
-                            <beer-paginator #paginator [lastIndex]="lastIndex"
-                                (selectedIndexChange)="switchPage($event); paginator2.selectedIndex=paginator.selectedIndex;"
-                                (nextClicked)="paginator2.firstPageVisibleIndex=paginator.firstPageVisibleIndex"
-                                (prevClicked)="paginator2.firstPageVisibleIndex=paginator.firstPageVisibleIndex"
-                                (pageDirection)="pageDirection=$event">
-                            </beer-paginator>
-                        </div>
-                    </div>
-                    <div class="beer-spacer" *ngFor="let beer of (beerMap.get(currentPageNumber)||[])">
-                        <beer-widget [beer]="beer" [direction]="pageDirection" (isClicked)="goToShow(beer.id)"></beer-widget>
-                    </div>
-                    <div class="paginator">
-                        <beer-paginator #paginator2 [lastIndex]="lastIndex"
-                            (selectedIndexChange)="switchPage($event); paginator.selectedIndex=paginator2.selectedIndex"
-                            (nextClicked)="paginator.firstPageVisibleIndex=paginator2.firstPageVisibleIndex"
-                            (prevClicked)="paginator.firstPageVisibleIndex=paginator2.firstPageVisibleIndex"
-                            (pageDirection)="pageDirection=$event">
-                        </beer-paginator>
-                    </div>
-                </div>
-            </ng-template>
-            <ng-template #notPaged>
-                <div class="clearfix">
-                    <div class="col-8">
-                        <h2 class="beer-counter">{{totalBeersNumber}} {{"counter.label"|translate}}</h2>
-                    </div>
-                </div>
-                <div class="beer-spacer" *ngFor="let beer of (beerMap.get(currentPageNumber)||[])">
-                    <beer-widget [beer]="beer" (isClicked)="goToShow(beer.id)"></beer-widget>
-                </div>
-            </ng-template>
-        </ng-template>
-        <ng-template #emptyTemplate>
-            <div class="empty">
-                <p>{{"emptyResult.home"|translate}}</p>
+  <div class="content">
+    @if (totalBeersNumber>0) {
+      @if (lastIndex>1) {
+        <div class="touch" (swipeleft)="paginator.panSelect(paginator.selectedIndex, $event.type)" (swiperight)="paginator.panSelect(paginator.selectedIndex, $event.type)">
+          <div class="clearfix counter-container">
+            <div class="col-8">
+              <h2 class="beer-counter">{{totalBeersNumber}} {{"counter.label"|translate}}</h2>
             </div>
-        </ng-template>
+            <div class="col-4 paginator">
+              <beer-paginator #paginator [lastIndex]="lastIndex"
+                (selectedIndexChange)="switchPage($event); paginator2.selectedIndex=paginator.selectedIndex;"
+                (nextClicked)="paginator2.firstPageVisibleIndex=paginator.firstPageVisibleIndex"
+                (prevClicked)="paginator2.firstPageVisibleIndex=paginator.firstPageVisibleIndex"
+                (pageDirection)="pageDirection=$event">
+              </beer-paginator>
+            </div>
+          </div>
+          @for (beer of (beerMap.get(currentPageNumber)||[]); track beer) {
+            <div class="beer-spacer">
+              <beer-widget [beer]="beer" [direction]="pageDirection" (isClicked)="goToShow(beer.id)"></beer-widget>
+            </div>
+          }
+          <div class="paginator">
+            <beer-paginator #paginator2 [lastIndex]="lastIndex"
+              (selectedIndexChange)="switchPage($event); paginator.selectedIndex=paginator2.selectedIndex"
+              (nextClicked)="paginator.firstPageVisibleIndex=paginator2.firstPageVisibleIndex"
+              (prevClicked)="paginator.firstPageVisibleIndex=paginator2.firstPageVisibleIndex"
+              (pageDirection)="pageDirection=$event">
+            </beer-paginator>
+          </div>
+        </div>
+      } @else {
+        <div class="clearfix">
+          <div class="col-8">
+            <h2 class="beer-counter">{{totalBeersNumber}} {{"counter.label"|translate}}</h2>
+          </div>
+        </div>
+        @for (beer of (beerMap.get(currentPageNumber)||[]); track beer) {
+          <div class="beer-spacer">
+            <beer-widget [beer]="beer" (isClicked)="goToShow(beer.id)"></beer-widget>
+          </div>
+        }
+      }
+    } @else {
+      <div class="empty">
+        <p>{{"emptyResult.home"|translate}}</p>
+      </div>
+    }
 
 
-    </div>
+  </div>
 </div>

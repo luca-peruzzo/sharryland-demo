@@ -1,96 +1,105 @@
-<ng-container *ngIf="isMobile; then mobileTemplate; else desktopTemplate"></ng-container>
-<ng-template #mobileTemplate>
-    <div *ngIf="!!currentBeer" class="clearfix">
-
-        <div class="black">
-            <div class="content">
-                <i class="fa" (click)="changeFavouritesStatus()"
-                    [ngClass]="{'fa-star': currentBeer.isFavourite, 'fa-star-o': !currentBeer.isFavourite}"></i>
-                <h1>{{currentBeer.name}}
-                </h1>
-                <p>{{currentBeer.tagline}}</p>
-            </div>
+@if (isMobile) {
+  @if (!!currentBeer) {
+    <div class="clearfix">
+      <div class="black">
+        <div class="content">
+          <i class="fa" (click)="changeFavouritesStatus()"
+          [ngClass]="{'fa-star': currentBeer.isFavourite, 'fa-star-o': !currentBeer.isFavourite}"></i>
+          <h1>{{currentBeer.name}}
+          </h1>
+          <p>{{currentBeer.tagline}}</p>
         </div>
-        <div class="broken-row-mobile">
-            <div class="img-container content touch" (swipeleft)="onPan($event, true)"
-                (swiperight)="onPan($event, false)">
-                <div class="left-button">
-                    <i *ngIf="!!beerList[currentIndex-1]" class="fa fa-angle-left" aria-hidden="true"
-                        (click)="leftArrow()"></i>
-                </div>
-                <img [src]="currentBeer.image_url" alt="beer">
-                <div class="right-button">
-                    <i *ngIf="!!beerList[currentIndex+1]" class="fa fa-angle-right" aria-hidden="true"
-                        (click)="rightArrow()"></i>
-                </div>
-            </div>
+      </div>
+      <div class="broken-row-mobile">
+        <div class="img-container content touch" (swipeleft)="onPan($event, true)"
+          (swiperight)="onPan($event, false)">
+          <div class="left-button">
+            @if (!!beerList[currentIndex-1]) {
+              <i class="fa fa-angle-left" aria-hidden="true"
+              (click)="leftArrow()"></i>
+            }
+          </div>
+          <img [src]="currentBeer.image_url" alt="beer">
+          <div class="right-button">
+            @if (!!beerList[currentIndex+1]) {
+              <i class="fa fa-angle-right" aria-hidden="true"
+              (click)="rightArrow()"></i>
+            }
+          </div>
         </div>
-        <div class="white">
-            <div class="content">
-                <h2>{{"description"|translate}}</h2>
-                <p>{{currentBeer.description}}</p>
-            </div>
+      </div>
+      <div class="white">
+        <div class="content">
+          <h2>{{"description"|translate}}</h2>
+          <p>{{currentBeer.description}}</p>
         </div>
+      </div>
     </div>
-</ng-template>
-<ng-template #desktopTemplate>
-    <div *ngIf="!!currentBeer" class="broken-row touch" (swipeleft)="onPan($event, true)"
-        (swiperight)="onPan($event, false)">
-        <div *ngIf="!!beerList[currentIndex-1]" class="left-button" (click)="leftArrow()">
-            <i class="fa fa-angle-left" aria-hidden="true"></i>
-            {{beerList[currentIndex-1].name}}
+  }
+} @else {
+  @if (!!currentBeer) {
+    <div class="broken-row touch" (swipeleft)="onPan($event, true)"
+      (swiperight)="onPan($event, false)">
+      @if (!!beerList[currentIndex-1]) {
+        <div class="left-button" (click)="leftArrow()">
+          <i class="fa fa-angle-left" aria-hidden="true"></i>
+          {{beerList[currentIndex-1].name}}
         </div>
-        <div class="content clearfix">
-            <div class="col-9">
-                <div class="black">
-                    <div>
-                        <i class="fa" (click)="changeFavouritesStatus()"
-                            [ngClass]="{'fa-star': currentBeer.isFavourite, 'fa-star-o': !currentBeer.isFavourite}"></i>
-                        <h1>{{currentBeer.name}}
-                        </h1>
-                        <p>{{currentBeer.tagline}}</p>
-                    </div>
-                </div>
-                <div class="white">
-                    <div>
-                        <h2>{{"description"|translate}}</h2>
-                        <p>{{currentBeer.description}}</p>
-                    </div>
-                </div>
+      }
+      <div class="content clearfix">
+        <div class="col-9">
+          <div class="black">
+            <div>
+              <i class="fa" (click)="changeFavouritesStatus()"
+              [ngClass]="{'fa-star': currentBeer.isFavourite, 'fa-star-o': !currentBeer.isFavourite}"></i>
+              <h1>{{currentBeer.name}}
+              </h1>
+              <p>{{currentBeer.tagline}}</p>
             </div>
-            <div class="col-3">
-                <div class="img-container">
-                    <img [src]="currentBeer.image_url" alt="beer">
-                </div>
+          </div>
+          <div class="white">
+            <div>
+              <h2>{{"description"|translate}}</h2>
+              <p>{{currentBeer.description}}</p>
             </div>
+          </div>
         </div>
-        <div class="right-button" *ngIf="!!beerList[currentIndex+1]" (click)="rightArrow()">
-            {{beerList[currentIndex+1].name}}
-            <i class="fa fa-angle-right" aria-hidden="true"></i>
+        <div class="col-3">
+          <div class="img-container">
+            <img [src]="currentBeer.image_url" alt="beer">
+          </div>
         </div>
+      </div>
+      @if (!!beerList[currentIndex+1]) {
+        <div class="right-button" (click)="rightArrow()">
+          {{beerList[currentIndex+1].name}}
+          <i class="fa fa-angle-right" aria-hidden="true"></i>
+        </div>
+      }
     </div>
-</ng-template>
+  }
+}
 
 <div class="pink">
-    <div class="content data">
-        <p>ABV: {{currentBeer.abv}}%</p>
-        <p>SRM: {{currentBeer.srm}}</p>
-        <p>IBC: {{currentBeer.ebc}}</p>
-        <p>IBU: {{currentBeer.ibu}}</p>
-        <p>PH {{currentBeer.ph}}</p>
-    </div>
+  <div class="content data">
+    <p>ABV: {{currentBeer.abv}}%</p>
+    <p>SRM: {{currentBeer.srm}}</p>
+    <p>IBC: {{currentBeer.ebc}}</p>
+    <p>IBU: {{currentBeer.ibu}}</p>
+    <p>PH {{currentBeer.ph}}</p>
+  </div>
 </div>
 <div class="grey">
-    <div class="content">
-        <h2>{{"foodPairings"|translate}}</h2>
-        <div class="scroll">
-            <div class="card-container">
-                <ng-container *ngFor="let desc of currentBeer.food_pairing; last as last">
-                    <div class="card" [ngStyle]="{'margin-right': last? '11px':'20px'}">
-                        <p>"{{desc}}"</p>
-                    </div>
-                </ng-container>
-            </div>
-        </div>
+  <div class="content">
+    <h2>{{"foodPairings"|translate}}</h2>
+    <div class="scroll">
+      <div class="card-container">
+        @for (desc of currentBeer.food_pairing; track desc; let last = $last) {
+          <div class="card" [ngStyle]="{'margin-right': last? '11px':'20px'}">
+            <p>"{{desc}}"</p>
+          </div>
+        }
+      </div>
     </div>
+  </div>
 </div>

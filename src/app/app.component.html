@@ -1,35 +1,41 @@
 <!-- Loading spinner -->
-<div *ngIf="loadingService.loadingSub.asObservable() | async"
-     class="loading-container flex-content-center">
-  <mat-progress-spinner color="primary"
-                        mode="indeterminate">
-  </mat-progress-spinner>
-</div>
+@if (loadingService.loadingSub.asObservable() | async) {
+  <div
+    class="loading-container flex-content-center">
+    <mat-progress-spinner color="primary"
+      mode="indeterminate">
+    </mat-progress-spinner>
+  </div>
+}
 <!-- application -->
 <div class="site-container">
   <div></div>
   <header>
     <div class="pseudo-header">
       <div class="content clearfix">
-        <ng-container *ngIf="location$ | async as location">
-          <a *ngIf="location==='/home'"
-             [routerLink]="['/home']">
-            <img src="../assets/img/logo-sharryland.png"
-                 alt="logo"
-                 height="35"
-                 width="250">
-          </a>
-          <div class="button-container left"
-               *ngIf="location!=='/home'">
-            <button class="mobile-no-margin"
-                    [routerLink]="['/home']">{{'button.allBeers' | translate}}</button>
-          </div>
+        @if (location$ | async; as location) {
+          @if (location==='/home') {
+            <a
+              [routerLink]="['/home']">
+              <img src="../assets/img/logo-sharryland.png"
+                alt="logo"
+                height="35"
+                width="250">
+            </a>
+          }
+          @if (location!=='/home') {
+            <div class="button-container left"
+              >
+              <button class="mobile-no-margin"
+              [routerLink]="['/home']">{{'button.allBeers' | translate}}</button>
+            </div>
+          }
           <div class="button-container">
             <button (click)="goToShow()">{{'button.random' | translate}}</button>
             <button class="ml-30"
-                    [routerLink]="['/favourites']">{{'button.favourites' | translate}}</button>
+            [routerLink]="['/favourites']">{{'button.favourites' | translate}}</button>
           </div>
-        </ng-container>
+        }
       </div>
     </div>
   </header>

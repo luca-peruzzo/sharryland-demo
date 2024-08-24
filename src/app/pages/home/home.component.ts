@@ -4,7 +4,7 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 import { BeerService } from 'src/app/services/beer.service';
 import { Beer } from 'src/assets/om/beer';
 import { FormModel } from 'src/assets/om/formModel';
-import { NgClass, NgIf, NgFor } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { PaginatorComponent } from '../../widget/paginator/paginator.component';
 import { BeerWidgetComponent } from '../../widget/beer-widget/beer-widget.component';
 import { TranslateModule } from '@ngx-translate/core';
@@ -13,7 +13,7 @@ import { TranslateModule } from '@ngx-translate/core';
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],
     standalone: true,
-    imports: [FormsModule, NgClass, NgIf, PaginatorComponent, NgFor, BeerWidgetComponent, TranslateModule]
+    imports: [FormsModule, NgClass, PaginatorComponent, BeerWidgetComponent, TranslateModule]
 })
 export class HomeComponent implements OnInit, AfterViewInit {
   totalBeersNumber = 0;

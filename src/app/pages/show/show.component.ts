@@ -2,14 +2,14 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BeerService } from 'src/app/services/beer.service';
 import { Beer } from 'src/assets/om/beer';
-import { NgIf, NgClass, NgFor, NgStyle } from '@angular/common';
+import { NgClass, NgStyle } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     templateUrl: './show.component.html',
     styleUrls: ['./show.component.scss'],
     standalone: true,
-    imports: [NgIf, NgClass, NgFor, NgStyle, TranslateModule]
+    imports: [NgClass, NgStyle, TranslateModule]
 })
 export class ShowComponent implements OnInit {
   isMobile = false;

@@ -1,12 +1,12 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { NgIf, NgClass } from '@angular/common';
+import { NgClass } from '@angular/common';
 
 @Component({
     selector: 'beer-paginator',
     templateUrl: './paginator.component.html',
     styleUrls: ['./paginator.component.scss'],
     standalone: true,
-    imports: [NgIf, NgClass]
+    imports: [NgClass]
 })
 export class PaginatorComponent implements OnChanges {
 

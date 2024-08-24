@@ -1,9 +1,17 @@
-<button *ngIf="firstPageVisibleIndex >= pagePerRow" (click)="prev()"><i class="fa fa-angle-left"
-        aria-hidden="true"></i></button>
+@if (firstPageVisibleIndex >= pagePerRow) {
+  <button (click)="prev()"><i class="fa fa-angle-left"
+  aria-hidden="true"></i></button>
+}
 <button (click)="select(firstPageVisibleIndex)" [ngClass]="{'current':selectedIndex==firstPageVisibleIndex}">{{pages[firstPageVisibleIndex]+1}}</button>
-<button *ngIf="!!pages[firstPageVisibleIndex+1]" (click)="select(firstPageVisibleIndex+1)"
-    [ngClass]="{'current':selectedIndex==firstPageVisibleIndex+1}">{{pages[firstPageVisibleIndex+1]+1}}</button>
-<button *ngIf="!!pages[firstPageVisibleIndex+2]" (click)="select(firstPageVisibleIndex+2)"
-    [ngClass]="{'current':selectedIndex==firstPageVisibleIndex+2}">{{pages[firstPageVisibleIndex+2]+1}}</button>
-<button *ngIf="lastIndex - firstPageVisibleIndex > pagePerRow" (click)="next()"><i class="fa fa-angle-right"
-        aria-hidden="true"></i></button>
+@if (!!pages[firstPageVisibleIndex+1]) {
+  <button (click)="select(firstPageVisibleIndex+1)"
+  [ngClass]="{'current':selectedIndex==firstPageVisibleIndex+1}">{{pages[firstPageVisibleIndex+1]+1}}</button>
+}
+@if (!!pages[firstPageVisibleIndex+2]) {
+  <button (click)="select(firstPageVisibleIndex+2)"
+  [ngClass]="{'current':selectedIndex==firstPageVisibleIndex+2}">{{pages[firstPageVisibleIndex+2]+1}}</button>
+}
+@if (lastIndex - firstPageVisibleIndex > pagePerRow) {
+  <button (click)="next()"><i class="fa fa-angle-right"
+  aria-hidden="true"></i></button>
+}

@@ -4,7 +4,7 @@ import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { filter, map, Observable } from 'rxjs';
 import { BeerService } from './services/beer.service';
 import { LoadingService } from './services/loading.service';
-import { NgIf, AsyncPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 @Component({
@@ -13,7 +13,7 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
     styleUrls: ['./app.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [NgIf, MatProgressSpinner, RouterLink, RouterOutlet, AsyncPipe, TranslateModule]
+    imports: [MatProgressSpinner, RouterLink, RouterOutlet, AsyncPipe, TranslateModule]
 })
 export class AppComponent {
   title = 'sharryland-demo';
