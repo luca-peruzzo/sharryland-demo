@@ -78,18 +78,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sharryland-demo:build"
+            "buildTarget": "sharryland-demo:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "sharryland-demo:build:production"
+              "buildTarget": "sharryland-demo:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sharryland-demo:build"
+            "buildTarget": "sharryland-demo:build"
           }
         },
         "test": {
